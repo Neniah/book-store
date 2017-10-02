@@ -1,6 +1,8 @@
-<%= simple_form_for @book do |f| %>
-  <%= f.input :title, label: 'Book Title' %>
-  <%= f.input :description %>
-  <%= f.input :author %>
-  <%= f.button :submit %>
+<%= simple_form_for @book, :html => { :multipart => true } do |f| %>
+  <%= f.select :category_id, options_for_select(Category.all.map{|s|[s.name, s.id]},
+        f.object.category_id), id: :category_id %>
+  <%= f.input :title, label: "Book Title" %>
+	<%= f.input :description %>
+	<%= f.input :author %>
+	<%= f.button :submit, :class => 'btn-custom2' %>
 <% end %>
